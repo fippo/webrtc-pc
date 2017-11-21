@@ -3285,7 +3285,7 @@ interface RTCPeerConnection : EventTarget  {
               <dt><dfn>offerToReceiveAudio</dfn> of type <span class="idlMemberType"><a>boolean</a></span></dt>
               <dd>
                 <p>
-                  Whenever this is given a non-false value, and the
+                  When set to true and the
                   <code><a>RTCPeerConnection</a></code> has no non-stopped
                   "sendrecv" or "recvonly" audio transceivers, createOffer()
                   MUST as its first step invoke the equivalent of
@@ -3296,11 +3296,11 @@ interface RTCPeerConnection : EventTarget  {
                   regular steps.
                 </p>
                 <p>
-                  When given a false value and the <code><a>RTCPeerConnection</a></code>
+                  When set to false and the <code><a>RTCPeerConnection</a></code>
                   has a non-stopped audio transceiver, createOffer() MUST as its first
-                  step modify the direction of the first audio transceiver such that
-                  it does not receive media and, provided this does not fail, proceed
-                  with createOffer()'s regular steps.
+                  step modify the direction of the first audio transceiver (in order of
+                  addition to the peerconnection) such that it does not receive media
+                  and, provided this does not fail, proceed with createOffer()'s regular steps.
                 </p>
                 <p>
                   In all other situations, it will be disregarded.
@@ -3309,7 +3309,7 @@ interface RTCPeerConnection : EventTarget  {
               <dt><dfn>offerToReceiveVideo</dfn> of type <span class="idlMemberType"><a>boolean</a></span></dt>
               <dd>
                 <p>
-                  Whenever this is given a non-false value, and the
+                  When set to true and the
                   <code><a>RTCPeerConnection</a></code> has no non-stopped
                   "sendrecv" or "recvonly" video transceivers, createOffer()
                   MUST as its first step invoke the equivalent of
@@ -3320,11 +3320,11 @@ interface RTCPeerConnection : EventTarget  {
                   regular steps.
                 </p>
                 <p>
-                  When given a false value and the <code><a>RTCPeerConnection</a></code>
+                  When set to false and the <code><a>RTCPeerConnection</a></code>
                   has a non-stopped video transceiver, createOffer() MUST as its first
-                  step modify the direction of the first video transceiver such that
-                  it does not receive media and, provided this does not fail, proceed
-                  with createOffer()'s regular steps.
+                  step modify the direction of the first video transceiver (in order of
+                  addition to the peerconnection) such that it does not receive media
+                  and, provided this does not fail, proceed with createOffer()'s regular steps.
                 </p>
                 <p>
                   In all other situations, it will be disregarded.
