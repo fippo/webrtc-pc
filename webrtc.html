@@ -3285,18 +3285,28 @@ interface RTCPeerConnection : EventTarget  {
               <dt><dfn>offerToReceiveAudio</dfn> of type <span class="idlMemberType"><a>boolean</a></span></dt>
               <dd>
                 <p>Offer to receive audio even though no audio will be sent.
-                When this dictionary member is present as an option to <a href=
+                When this dictionary member is true as an option to <a href=
                 "#dom-rtcpeerconnection-createoffer">createOffer</a>, run the
                 <a>offer to receive</a> steps with a <var>mediaType</var> of
+                "audio" instead of the regular <a href=
+                "#dom-rtcpeerconnection-createoffer">createOffer</a> steps.</p>
+                When this dictionary member is false as an option to <a href=
+                "#dom-rtcpeerconnection-createoffer">createOffer</a>, run the
+                <a>offer not to receive</a> steps with a <var>mediaType</var> of
                 "audio" instead of the regular <a href=
                 "#dom-rtcpeerconnection-createoffer">createOffer</a> steps.</p>
               </dd>
               <dt><dfn>offerToReceiveVideo</dfn> of type <span class="idlMemberType"><a>boolean</a></span></dt>
               <dd>
                 <p>Offer to receive video even though no video will be sent.
-                When this dictionary member is present as an option to <a href=
+                When this dictionary member is true as an option to <a href=
                 "#dom-rtcpeerconnection-createoffer">createOffer</a>, run the
                 <a>offer to receive</a> steps with a <var>mediaType</var> of
+                "video" instead of the regular <a href=
+                "#dom-rtcpeerconnection-createoffer">createOffer</a> steps.</p>
+                When this dictionary member is false as an option to <a href=
+                "#dom-rtcpeerconnection-createoffer">createOffer</a>, run the
+                <a>offer not to receive</a> steps with a <var>mediaType</var> of
                 "video" instead of the regular <a href=
                 "#dom-rtcpeerconnection-createoffer">createOffer</a> steps.</p>
               </dd>
@@ -3307,10 +3317,6 @@ interface RTCPeerConnection : EventTarget  {
               <li>
                 <p>Let <var>connection</var> be the current <code>
                 <a>RTCPeerConnection</a></code> object.</p>
-              </li>
-              <li>
-                <p>If the value of the dictionary member is false, jump to the
-                step labeled <em>create offer</em>.</p>
               </li>
               <li>
                 <p>If <var>connection</var> has any stopped "sendrecv" or
@@ -3330,6 +3336,30 @@ interface RTCPeerConnection : EventTarget  {
               <li>
                 <p>Set <var>transceiver</var>'s <a>[[\Direction]]</a> slot to
                 "recvonly".</p>
+              </li>
+              <li>
+                <p><em>create offer:</em> Run the steps specified by <a href=
+                "#dom-rtcpeerconnection-createoffer">createOffer</a> to create
+              the offer.</p>
+              </li>
+            </ol>
+
+            <p>To <dfn>offer not to receive</dfn> with <var>mediaType</var>, run
+            the following steps:</p>
+            <ol>
+              <li>
+                <p>Let <var>connection</var> be the current <code>
+                <a>RTCPeerConnection</a></code> object.</p>
+              </li>
+              <li>
+                <p>For each non-stopped "sendrecv" transceiver of
+                type <var>mediaType</var>, set <var>transceiver</var>'s
+                <a>[[\Direction]]</a> slot to "sendonly".</p>
+              </li>
+              <li>
+                <p>For each non-stopped "recvonly" transceiver of
+                type <var>mediaType</var>, set <var>transceiver</var>'s
+                <a>[[\Direction]]</a> slot to "inactive".</p>
               </li>
               <li>
                 <p><em>create offer:</em> Run the steps specified by <a href=
